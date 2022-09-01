@@ -1,8 +1,12 @@
+import Login from './components/Login'
 function App() {
   return (
-    <h2>
-      HOla
-    </h2>
+    <div>
+      <h2>
+        App
+      </h2>
+      <Login />
+    </div>
   );
 }
 
