@@ -8,6 +8,9 @@ const Login = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         const { email, password } = state;
+        if(email === "" || password === ""){
+            
+        }
         console.log("Submit");
         console.log("email", email);
         console.log("password", password);
