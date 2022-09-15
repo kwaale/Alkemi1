@@ -31,27 +31,30 @@ const Listado = () => {
     const API_KEY = '9f3d130990d75b5f5409f458cb910a4b';
     const URL = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=en-ES&sort_by=popularity.desc&page=1`;
     const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
-    const [state, setState ] = useState([])
+    const [state, setState] = useState([])
     useEffect(() => {
         axios.get(URL)
-        .then(res => {
-            setState(res.data.results)
-            console.log(res.data.results[0])
-        })
-    }, [URL]);
+            .then(res => {
+                setState(res.data.results)
+            })
+            .catch((error)=>{
+                console.error(error)
+            })
+    }, [setState]);
 
     const token = localStorage.getItem('token');
 
-    return(
+    return (
         <div>
-            { !token ? (<Navigate replace to="/"/>) : ( state?.map(({id,name,first_air_date,original_language,poster_path,overview}) => {
+            {!token ? (<Navigate replace to="/" />) : (state?.map(({ id, name, first_air_date, original_language, poster_path, overview }) => {
                 return (
-                    <Movie 
-                        key={id} 
-                        name={name} 
-                        premiere={first_air_date} 
-                        language={original_language} 
-                        poster={URL_IMAGE + poster_path} 
+                    <Movie
+                        key={id}
+                        name={name}
+                        premiere={first_air_date}
+                        language={original_language}
+                        poster={URL_IMAGE + poster_path}
+                        id={id}
                         overview={overview} />
                 )
             }))}
