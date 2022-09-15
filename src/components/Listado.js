@@ -3,8 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Movie from "./Movie";
 
+
 /*Ejemplo de solicitud de API
-https://api.themoviedb.org/3/movie/550?api_key=9f3d130990d75b5f5409f458cb910a4b*/
+https://api.themoviedb.org/3/movie/550?api_key=9f3d130990d75b5f5409f458cb910a4b
 /**
  * backdrop_path "/Aa9TLpNpBMyRkD8sPJ7ACKLjt0l.jpg"
 first_air_date "2022-08-21"
@@ -40,10 +41,10 @@ const Listado = () => {
             .catch((error)=>{
                 console.error(error)
             })
-    }, [setState]);
+    }, [URL]);
 
-    const token = localStorage.getItem('token');
-
+    const token = sessionStorage.getItem('token');
+    
     return (
         <div>
             {!token ? (<Navigate replace to="/" />) : (state?.map(({ id, name, first_air_date, original_language, poster_path, overview }) => {
