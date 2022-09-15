@@ -14,7 +14,9 @@ const Movie = ({id, name, premiere, language, poster, overview}) => {
                         <p className="card-text">{overview.substring(0,250) + "..."}</p>
                         <p className="card-text">Language: {language}</p>
                         <p className="card-text"><small className="text-muted">Premiere: {premiere}</small></p>
-                        <Link to={`/detalle?id=${id}`} class="btn btn-primary">Details</Link>
+                        <Link to={`/detalle?movieID=${id}`} className="btn btn-primary">Details</Link>
+                        <h4>Id: {id}</h4>
+                        {/* <Link to={`/detalle1`} className="btn btn-primary">Details</Link> */}
                     </div>
                 </div>
             </div>
