@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import React from 'react';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -13,7 +14,7 @@ const MovieDetail = () => {
     //https://api.themoviedb.org/3/movie/63174?api_key=9f3d130990d75b5f5409f458cb910a4b&language=us-US
     //https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=es-ES
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-ES`)
+        axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-ES`)
             .then(res => {
                 setState(res.data)
             })

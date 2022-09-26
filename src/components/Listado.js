@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import React from 'react';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Movie from "./Movie";
@@ -33,18 +34,19 @@ const Listado = () => {
     const URL = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&language=en-ES&sort_by=popularity.desc&page=1`;
     const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
     const [state, setState] = useState([])
+    //https://api.themoviedb.org/3/discover/tv?api_key=9f3d130990d75b5f5409f458cb910a4b&language=en-ES&sort_by=popularity.desc&page=1
     useEffect(() => {
         axios.get(URL)
             .then(res => {
                 setState(res.data.results)
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.error(error)
             })
     }, [URL]);
 
     const token = sessionStorage.getItem('token');
-    
+
     return (
         <div>
             {!token ? (<Navigate replace to="/" />) : (state?.map(({ id, name, first_air_date, original_language, poster_path, overview }) => {
@@ -57,8 +59,8 @@ const Listado = () => {
                         poster={URL_IMAGE + poster_path}
                         id={id}
                         overview={overview} />
-                )
-            }))}
+                )}))
+            }
         </div>
     )
 }

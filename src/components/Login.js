@@ -1,6 +1,7 @@
 import { useState } from "react";
+import React from 'react';
 import axios from 'axios';
-import swAlert from '@sweetalert/with-react';
+// import swAlert from '@sweetalert/with-react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,9 +17,9 @@ const Login = () => {
         console.log('state', state)
         e.preventDefault();
         const { email, password } = state;
-        if (email === "" || password === "") return swAlert(<h2>No pueden estar Vacios</h2>);
-        if (!regexEmail.test(state.email)) return swAlert(<h2>No es un email.</h2>);
-        if (!email === "challenge@alkemy.org" || !password === "react") return swAlert(<h2>Credenciales Invalidas</h2>);
+        if (email === "" || password === "") return alert("No pueden estar Vacios.");;
+        if (!regexEmail.test(state.email)) return alert("No es un email.");
+        if (!email === "challenge@alkemy.org" || !password === "react") return alert("Credenciales Invalidas.");
 
         // console.log("Submit");
         // console.log("email", email);
@@ -28,10 +29,10 @@ const Login = () => {
             .then(res => {
                 const { token } = res.data;
                 sessionStorage.setItem('token', token)
-                swAlert(<h2>Logueado</h2>)
-                navigate("/listado")
+                alert("Logueado");
+                navigate("/listado");
             })
-            .catch(res => swAlert(<h2>Credenciales Invalida</h2>))
+            .catch(res => alert("Credenciales Invalida."));
 
     }
 
