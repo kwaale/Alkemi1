@@ -9,7 +9,8 @@ import Resultados from './components/Resultados';
 
 
 function App() {
-  const addRemoveFavorite = (id) =>{
+
+  const addRemoveFavorite = (id) => {
     console.log("Favorito", id)
   }
   return (
@@ -18,7 +19,7 @@ function App() {
       <div className='container mt-3'>
         <Routes>
           <Route path='/' element={<Login />} />
-          <Route path='/listado' element={<Listado addRemoveFavorite={addRemoveFavorite}/>} />
+          <Route path='/listado' element={<Listado addRemoveFavorite={addRemoveFavorite} />} />
           <Route path='/detalle' element={<MovieDetail />} />
           <Route path='/results' element={<Resultados />} />
           {/* <Route path='/detalle1' element={<MovieDetail />} /> */}
