@@ -1,37 +1,31 @@
 import { Navigate } from "react-router-dom";
 import React from 'react';
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { getMovieDetail } from '../redux/actions/moviesAction';
 
 const MovieDetail = () => {
-    const API_KEY = '9f3d130990d75b5f5409f458cb910a4b';
+    const { movieDetail } = useSelector(state => state.moviesReducer);
+    const dispatch = useDispatch();
     const URL_IMAGE = 'https://image.tmdb.org/t/p/original'
-
-    const [state, setState] = useState({});
     const token = sessionStorage.getItem('token');
     let query = new URLSearchParams(window.location.search)
     const id = query.get('movieID');
-    //https://api.themoviedb.org/3/movie/63174?api_key=9f3d130990d75b5f5409f458cb910a4b&language=us-US
-    //https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=es-ES
+
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-ES`)
-            .then(res => {
-                setState(res.data)
-            })
-            .catch(error => console.error(error));
-    }, [id]);
+        dispatch(getMovieDetail(id));
+    }, [dispatch,id]);
 
     return (
         <>
-            {!state && <h1>Cargando</h1>}
+            {!movieDetail && <h1>Cargando</h1>}
             {!token ? (<Navigate replace to="/" />) :
-                (state && <div className="card mb-3">
-                    <h1>Id: {state.id}</h1>
-                    <img src={URL_IMAGE + state.poster_path} className="card-img-top" alt={state.original_title} />
+                (movieDetail && <div className="card mb-3">
+                    <img src={URL_IMAGE + movieDetail.poster_path} className="card-img-top" alt={movieDetail.original_title} />
                     <div className="card-body">
-                        <h5 className="card-title">{state.original_title}</h5>
-                        <p className="card-text">{state.overview}</p>
-                        <p className="card-text"><small className="text-muted">{state.tagline}</small></p>
+                        <h5 className="card-title">{movieDetail.original_title}</h5>
+                        <p className="card-text">{movieDetail.overview}</p>
+                        <p className="card-text"><small className="text-muted">{movieDetail.tagline}</small></p>
                     </div>
                 </div>)}
         </>

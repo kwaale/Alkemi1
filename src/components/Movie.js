@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Movie = ({ id, name, premiere, language, poster, overview, addRemoveFavorite }) => {
-    //Prueba git
     return (
         <div className="card mb-3" style={{ "maxWidth": "540px" }}>
             <div className="row g-0">
@@ -26,6 +25,5 @@ const Movie = ({ id, name, premiere, language, poster, overview, addRemoveFavori
         </div>
     )
 }
-
 
 export default Movie;

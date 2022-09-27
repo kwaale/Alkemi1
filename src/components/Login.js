@@ -1,7 +1,6 @@
 import { useState } from "react";
 import React from 'react';
 import axios from 'axios';
-// import swAlert from '@sweetalert/with-react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -21,10 +20,6 @@ const Login = () => {
         if (!regexEmail.test(state.email)) return alert("No es un email.");
         if (!email === "challenge@alkemy.org" || !password === "react") return alert("Credenciales Invalidas.");
 
-        // console.log("Submit");
-        // console.log("email", email);
-        // console.log("password", password);
-
         axios.post('http://challenge-react.alkemy.org', { email, password })
             .then(res => {
                 const { token } = res.data;
@@ -33,7 +28,6 @@ const Login = () => {
                 navigate("/listado");
             })
             .catch(res => alert("Credenciales Invalida."));
-
     }
 
 
@@ -43,8 +37,6 @@ const Login = () => {
             ...state,
             [name]: value,
         })
-        // console.log("email", state.email)
-        // console.log("password", state.password)
     }
     return (
         <form onSubmit={submitHandler}>
